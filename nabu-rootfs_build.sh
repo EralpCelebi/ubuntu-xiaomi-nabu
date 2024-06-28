@@ -23,9 +23,9 @@ mount --bind /proc rootdir/proc
 mount --bind /sys rootdir/sys
 
 echo "nameserver 1.1.1.1" | tee rootdir/etc/resolv.conf
-echo "xiaomi-nabu" | tee rootdir/etc/hostname
+echo "Pad" | tee rootdir/etc/hostname
 echo "127.0.0.1 localhost
-127.0.1.1 xiaomi-nabu" | tee rootdir/etc/hosts
+127.0.1.1 Pad" | tee rootdir/etc/hosts
 
 if uname -m | grep -q aarch64
 then
@@ -49,10 +49,7 @@ chroot rootdir apt upgrade -y
 
 #u-boot-tools breaks grub installation
 chroot rootdir apt install -y bash-completion sudo ssh nano u-boot-tools- $1
-
-#chroot rootdir gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts-only-mounted true
-
-
+chroot rootdir apt install -y iwd rofi rxvt-unicode
 
 #Device specific
 chroot rootdir apt install -y rmtfs protection-domain-mapper tqftpserv
