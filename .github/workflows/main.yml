@@ -45,7 +45,7 @@ jobs:
     needs: kernel
     strategy:
             matrix:
-                desktop: [ubuntu-desktop, plasma-mobile, kde-standard]
+                desktop: [ubuntu-desktop, i3]
                 kernel: [6.8]
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
