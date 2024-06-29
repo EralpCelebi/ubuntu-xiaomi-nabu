@@ -51,7 +51,7 @@ chroot rootdir apt upgrade -y
 chroot rootdir apt install -y bash-completion sudo ssh nano u-boot-tools- $1
 
 if [ $1 == "i3" ]; then
-  chroot rootdir apt install -y iwd rofi rxvt-unicode
+  chroot rootdir apt install -y iwd rofi rxvt-unicode picom sddm i3
 fi
 
 #Device specific
