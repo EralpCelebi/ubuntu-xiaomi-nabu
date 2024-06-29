@@ -45,7 +45,7 @@ jobs:
     needs: kernel
     strategy:
             matrix:
-                desktop: [ubuntu-desktop, i3]
+                desktop: [ubuntu-desktop-minimal]
                 kernel: [6.7-9894da1]
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
