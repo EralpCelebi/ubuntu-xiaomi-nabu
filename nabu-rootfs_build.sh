@@ -50,10 +50,6 @@ chroot rootdir apt upgrade -y
 #u-boot-tools breaks grub installation
 chroot rootdir apt install -y bash-completion sudo ssh nano u-boot-tools- $1
 
-if [ $1 == "i3" ]; then
-  chroot rootdir apt install -y iwd rofi rxvt-unicode picom sddm i3
-fi
-
 #Device specific
 chroot rootdir apt install -y rmtfs protection-domain-mapper tqftpserv
 
@@ -80,10 +76,8 @@ sed --in-place 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_D
 echo "PARTLABEL=linux / ext4 errors=remount-ro,x-systemd.growfs 0 1
 PARTLABEL=esp /boot/efi vfat umask=0077 0 1" | tee rootdir/etc/fstab
 
-if [ $1 != "i3" ]; then
-  mkdir rootdir/var/lib/gdm
-  touch rootdir/var/lib/gdm/run-initial-setup
-fi
+mkdir rootdir/var/lib/gdm
+touch rootdir/var/lib/gdm/run-initial-setup
 
 chroot rootdir apt clean
 
