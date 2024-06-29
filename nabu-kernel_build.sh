@@ -1,5 +1,7 @@
 git clone https://github.com/map220v/sm8150-mainline.git --branch nabu-$1 --depth 1 linux
 cd linux
+git revert 5f7b858f5f330ed542b486117e42b45681985853
+git revert c52d0e0b52477e49138e355642055e22a28e4801
 make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- defconfig sm8150.config
 make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-
 _kernel_version="$(make kernelrelease -s)"
