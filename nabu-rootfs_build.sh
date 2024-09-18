@@ -6,9 +6,9 @@ then
   exit
 fi
 
-VERSION="23.10"
+VERSION="24.04.1"
 
-truncate -s 6G rootfs.img
+truncate -s 5G rootfs.img
 mkfs.ext4 rootfs.img
 mkdir rootdir
 mount -o loop rootfs.img rootdir
@@ -23,9 +23,7 @@ mount --bind /proc rootdir/proc
 mount --bind /sys rootdir/sys
 
 echo "nameserver 1.1.1.1" | tee rootdir/etc/resolv.conf
-echo "xiaomi-nabu" | tee rootdir/etc/hostname
-echo "127.0.0.1 localhost
-127.0.1.1 xiaomi-nabu" | tee rootdir/etc/hosts
+echo "ubuntu" | tee rootdir/etc/hostname
 
 if uname -m | grep -q aarch64
 then
@@ -71,7 +69,7 @@ rm rootdir/tmp/*-xiaomi-nabu.deb
 chroot rootdir apt install -y grub-efi-arm64
 
 sed --in-place 's/^#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/' rootdir/etc/default/grub
-sed --in-place 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT=""/' rootdir/etc/default/grub
+sed --in-place 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT="fbcon=rotate:1"/' rootdir/etc/default/grub
 
 #this done on device for now
 #grub-install
