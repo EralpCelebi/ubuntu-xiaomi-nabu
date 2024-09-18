@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
             matrix:
-                version: [6.7-working, 6.8]
+                version: [main]
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -45,8 +45,8 @@ jobs:
     needs: kernel
     strategy:
             matrix:
-                desktop: [ubuntu-desktop, lomiri]
-                kernel: [6.7-working, 6.8]
+                desktop: [ubuntu-desktop-minimal, kde-plasma-desktop]
+                kernel: [main]
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
